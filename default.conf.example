@@ -1,0 +1,5 @@
+[default]
+url=http://fritz.box
+login=/login_sid.lua
+network=/net/network.lua
+password=bvrzSdEQtfoPEjieC3i9tPqNTg7bFxQ6
