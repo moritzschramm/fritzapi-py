@@ -6,6 +6,7 @@ import json
 from bs4 import BeautifulSoup
 import configparser
 
+INVALID_SID = "0000000000000000"
 CONFIG_FILE = "./default.conf"
 BASE_URL    = "http://fritz.box"
 LOGIN_URL   = BASE_URL + "/login_sid.lua"
@@ -78,7 +79,7 @@ def login(password=""):
         print("Could not extract SID. XML:\n" + r.text)
         return False
 
-    if SID == "0000000000000000":
+    if SID == INVALID_SID:
         print("Login failed. Retry in " + get_xml_element(r.text, "BlockTime") + " seconds")
         return False
 
@@ -132,7 +133,7 @@ def post(url, parameters = {}, headers = {}):
     return requests.post(url, parameters, headers)
 
 def get_devices():
-    """Get currently connected device names in array"""
+    """Get currently connected device names in list"""
 
     r = get(NETWORK_URL, DEVICE_QUERY_PARAMS)
 
